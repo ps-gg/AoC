@@ -11,13 +11,34 @@ try {
 } catch (err) {
     throw err;
 } 
-
+ // Going oldschool for this one
 function solveA(input) {
-    
-    return 0; 
+    let one = 0;
+    let curr = 0;
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] === '') {
+            if (curr > one) {
+                one = curr;
+            }
+            curr = 0;
+        } else {
+            curr += parseInt(input[i]);
+        }
+    }
+    return one; 
 }
 
 function solveB(input) {
-    
-    return 0;
+    let curr = 0;
+    const elfs = [];
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] === '') {
+            elfs.push(curr);
+            curr = 0;
+        } else {
+            curr += parseInt(input[i]);
+        }
+    }   
+    elfs.sort((a, b) => b - a);
+    return elfs[0] + elfs[1] + elfs[2];
 }
